@@ -1,183 +1,633 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta Ads Mentorship | GV Courses</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <title>Tráfego Pago na Prática - Aula Ao Vivo</title>
     <style>
-        body { background-color: #080808; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glow-red { box-shadow: 0 0 50px rgba(220, 38, 38, 0.3); }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .gradient-text { background: linear-gradient(to right, #ffffff, #ff4d4d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .card-hover:hover { border-color: #dc2626; transform: translateY(-5px); transition: 0.3s; }
-        @keyframes pulse-custom { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .animate-live { animation: pulse-custom 2s infinite; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header com contador de vagas */
+        .urgency-bar {
+            background: #ff4757;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { background-color: #ff4757; }
+            50% { background-color: #ff6b81; }
+            100% { background-color: #ff4757; }
+        }
+
+        /* Seção Hero */
+        .hero {
+            background: white;
+            border-radius: 20px;
+            margin: 30px auto;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .badge {
+            background: #ffd32a;
+            color: #1e272e;
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .badge-live {
+            background: #ff4757;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            animation: pulse-live 1.5s infinite;
+        }
+
+        @keyframes pulse-live {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .highlight {
+            color: #667eea;
+            border-bottom: 3px solid #ffd32a;
+        }
+
+        .subheadline {
+            font-size: 1.4rem;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Grid de benefícios */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .benefit-item {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .benefit-item h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        /* Cards de conteúdo */
+        .content-card {
+            background: linear-gradient(145deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .content-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Preço e CTA */
+        .pricing-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 50px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 2px solid #ffd32a;
+        }
+
+        .price-tag {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 20px 0;
+        }
+
+        .price-tag small {
+            font-size: 1rem;
+            color: #7f8c8d;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #95a5a6;
+            font-size: 1.5rem;
+        }
+
+        .guarantee {
+            color: #27ae60;
+            font-weight: bold;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn {
+            background: linear-gradient(145deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 20px 60px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 20px 0;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-warning {
+            color: #e74c3c;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* Informações da aula */
+        .meet-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: #f1f2f6;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .meet-badge {
+            background: #00a8ff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .meet-badge-warning {
+            background: #ff4757;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        /* FAQ */
+        .faq-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ecf0f1;
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            margin-top: 10px;
+            color: #7f8c8d;
+            display: none;
+            padding: 10px 0;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subheadline {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 1.2rem;
+            }
+            
+            .price-tag {
+                font-size: 3rem;
+            }
+            
+            .hero {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Animações */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Contador de vagas */
+        .spots-left {
+            background: #ffd32a;
+            color: #2c3e50;
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* Botão flutuante do WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            line-height: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+        }
+
+        /* Destaque para informações importantes */
+        .important-message {
+            background: #fff3cd;
+            border: 2px solid #ffd32a;
+            color: #856404;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .live-only {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #ff4757;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body>
+    <div class="urgency-bar" id="urgencyBar">
+        ⚡ ÚLTIMAS 30 VAGAS! Aula AO VIVO por apenas R$50 ⚡
+    </div>
 
-    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5 px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="font-black text-xl tracking-tighter">GV<span class="text-red-600 italic">ADS</span></div>
-            <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-gray-400">
-                <span>Início: Próximo Domingo</span>
-                <span class="text-red-500 animate-live">● 100% Ao Vivo</span>
-            </div>
-            <a href="https://wa.me/5567981082158" class="bg-red-600 px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-red-600 transition-all">Garantir Vaga</a>
-        </div>
-    </nav>
-
-    <section class="relative pt-40 pb-20 px-6">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div class="text-center lg:text-left">
-                <div class="inline-block px-4 py-1 rounded-md bg-red-600/10 border border-red-600/30 text-red-500 text-xs font-bold uppercase tracking-[0.3em] mb-8">
-                    Do Zero à Primeira Campanha Lucrativa
-                </div>
-                <h1 class="text-6xl lg:text-8xl font-black mb-8 leading-[0.9] tracking-tighter">
-                    A CIÊNCIA DE <br><span class="gradient-text">IMPRIMIR DINHEIRO</span> <br>COM ADS.
-                </h1>
-                <p class="text-gray-400 text-xl mb-12 max-w-xl leading-relaxed">
-                    Esqueça o "apertar botões". Eu vou te ensinar a arquitetura psicológica e técnica usada pelos maiores players do mercado para escalar negócios no Meta Ads. 
-                </p>
-                
-                <div class="flex flex-col sm:flex-row items-center gap-8">
-                    <div class="text-center sm:text-left">
-                        <span class="block text-4xl font-black italic">U$ 50,00</span>
-                        <span class="text-xs text-red-500 font-bold uppercase tracking-widest">Preço de Lançamento</span>
-                    </div>
-                    <a href="https://wa.me/5567981082158" target="_blank" class="glow-red bg-white text-black font-black py-6 px-12 rounded-2xl text-2xl uppercase tracking-tighter hover:bg-red-600 hover:text-white transition-all">
-                        Quero Minha Vaga
-                    </a>
-                </div>
-            </div>
-
-            <div class="glass p-8 rounded-[40px] border-red-600/20 relative">
-                <div class="absolute -top-10 -right-10 w-40 h-40 bg-red-600/20 blur-[100px]"></div>
-                <div class="flex items-center justify-between mb-8">
-                    <span class="text-xs font-mono text-gray-500 tracking-[0.3em]">LIVE_PERFORMANCE.JSON</span>
-                    <div class="flex gap-2">
-                        <div class="w-3 h-3 rounded-full bg-red-600"></div>
-                        <div class="w-3 h-3 rounded-full bg-white/10"></div>
-                    </div>
-                </div>
-                <div class="space-y-6">
-                    <div class="h-20 bg-white/5 border border-white/5 rounded-2xl flex items-center px-6 justify-between">
-                        <div><p class="text-[10px] text-gray-500 uppercase">Faturamento Gerado</p><p class="text-2xl font-black">R$ 12.450,00</p></div>
-                        <div class="text-green-500 text-xs font-bold font-mono">+482%</div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="h-32 bg-red-600/10 border border-red-600/20 rounded-2xl p-6">
-                            <p class="text-[10px] text-gray-500 uppercase mb-2">ROI Médio</p>
-                            <p class="text-3xl font-black italic text-red-500">8.4x</p>
-                        </div>
-                        <div class="h-32 bg-white/5 border border-white/5 rounded-2xl p-6">
-                            <p class="text-[10px] text-gray-500 uppercase mb-2">Leads Hoje</p>
-                            <p class="text-3xl font-black italic underline">142</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-black border-y border-white/5 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-red-600 font-bold uppercase tracking-[0.5em] mb-8 text-sm italic">Leia com Atenção</h2>
-            <p class="text-3xl lg:text-4xl font-bold leading-tight mb-8">
-                "Este curso não é uma promessa de dinheiro fácil. Se você é preguiçoso ou busca um milagre, feche esta página agora."
+    <div class="container">
+        <div class="hero fade-in">
+            <span class="badge-live">🔴 AO VIVO - AGENDE SUA VAGA</span>
+            <h1>
+                Domine o <span class="highlight">Tráfego Pago</span><br>
+                em uma Aula 100% Ao Vivo
+            </h1>
+            <p class="subheadline">
+                Aprenda na prática como criar campanhas lucrativas do zero, mesmo sem experiência. 
+                Aula exclusiva e interativa via Google Meet!
             </p>
-            <p class="text-gray-500 text-lg">
-                Gerenciar tráfego pago exige **responsabilidade**. Você lidará com capital real. Minha missão em 4 semanas é te dar o mapa para que você não desperdice um único centavo e entenda o jogo dos profissionais.
-            </p>
-        </div>
-    </section>
 
-    <section class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20">
-                <h2 class="text-4xl lg:text-6xl font-black mb-4 uppercase">A JORNADA DE <span class="text-red-600">4 SEMANAS</span></h2>
-                <p class="text-gray-400 font-bold tracking-widest uppercase text-sm">Aulas Ao Vivo • Todos os Domingos às 10h (Brasília)</p>
+            <div class="live-only">
+                <span>🎥 AULA SOMENTE AO VIVO</span>
+                <span>⏰ NÃO HAVERÁ GRAVAÇÃO</span>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass p-10 rounded-3xl card-hover">
-                    <div class="flex justify-between items-start mb-8">
-                        <span class="bg-red-600 text-[10px] px-3 py-1 rounded-full font-black uppercase">Fase 01</span>
-                        <span class="text-gray-600 font-mono text-xs">DOM_LIVE_01</span>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 uppercase">Arquitetura de Contingência</h3>
-                    <p class="text-gray-400 leading-relaxed">Configuração profissional do Business Manager. O segredo para nunca mais ter anúncios pausados por bloqueios e como estruturar sua empresa dentro do Meta.</p>
-                </div>
+            <div class="meet-info">
+                <span class="meet-badge">⏰ Duração: 3 horas</span>
+                <span class="meet-badge">🎥 Google Meet</span>
+                <span class="meet-badge-warning">📱 LINK ENVIADO VIA WHATSAPP</span>
+            </div>
 
-                <div class="glass p-10 rounded-3xl card-hover">
-                    <div class="flex justify-between items-start mb-8">
-                        <span class="bg-red-600 text-[10px] px-3 py-1 rounded-full font-black uppercase">Fase 02</span>
-                        <span class="text-gray-600 font-mono text-xs">DOM_LIVE_02</span>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 uppercase">Psicologia de Conversão</h3>
-                    <p class="text-gray-400 leading-relaxed">Como criar imagens e vídeos que forçam o clique. Você vai aprender o Copywriting de alta retenção que transforma o scroll infinito em uma venda fechada.</p>
-                </div>
+            <div class="important-message">
+                <strong>📱 IMPORTANTE:</strong> Após a inscrição, você receberá o link da aula diretamente no seu WhatsApp!
+            </div>
 
-                <div class="glass p-10 rounded-3xl card-hover">
-                    <div class="flex justify-between items-start mb-8">
-                        <span class="bg-red-600 text-[10px] px-3 py-1 rounded-full font-black uppercase">Fase 03</span>
-                        <span class="text-gray-600 font-mono text-xs">DOM_LIVE_03</span>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 uppercase">Instalação e API de Dados</h3>
-                    <p class="text-gray-400 leading-relaxed">Sem "economês" técnico. Vou te mostrar na prática como instalar o Pixel e a API de conversão para que o algoritmo do Facebook encontre os seus compradores ideais.</p>
-                </div>
-
-                <div class="glass p-10 rounded-3xl card-hover">
-                    <div class="flex justify-between items-start mb-8">
-                        <span class="bg-red-600 text-[10px] px-3 py-1 rounded-full font-black uppercase">Fase 04</span>
-                        <span class="text-gray-600 font-mono text-xs">DOM_LIVE_04</span>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 uppercase">Escala e Plano de Voo</h3>
-                    <p class="text-gray-400 leading-relaxed">Como analisar métricas como um profissional. Quando aumentar o orçamento e como escalar suas campanhas para atingir faturamentos que você nunca imaginou.</p>
-                </div>
+            <div class="spots-left">
+                🔥 APENAS <span id="vagasRestantes">30</span> VAGAS DISPONÍVEIS 🔥
             </div>
         </div>
-    </section>
 
-    <section class="py-24 px-6 bg-red-600/5 overflow-hidden">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-            <div class="flex-1">
-                <h2 class="text-4xl lg:text-6xl font-black mb-10 leading-none">CERTIFICAÇÃO <br>INTERNACIONAL <br><span class="text-red-600">GV COURSES</span></h2>
-                <div class="space-y-6 text-gray-400 text-lg">
-                    <p class="flex items-center gap-4"><span class="w-6 h-[2px] bg-red-600"></span> Selo de Qualidade GV COURSES reconhecido no mercado.</p>
-                    <p class="flex items-center gap-4"><span class="w-6 h-[2px] bg-red-600"></span> Validação de horas práticas e teóricas.</p>
-                    <p class="flex items-center gap-4"><span class="w-6 h-[2px] bg-red-600"></span> Acesso ao grupo exclusivo de alunos (Networking).</p>
-                </div>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-icon">🚀</div>
+                <h3>Método Comprovado</h3>
+                <p>Estratégias que já geraram mais de R$1 milhão em vendas para nossos alunos</p>
             </div>
-            <div class="flex-1 glass p-1 rounded-3xl transform rotate-3">
-                <div class="bg-black border border-white/10 rounded-2xl py-20 px-10 text-center">
-                    <div class="w-20 h-20 bg-red-600/20 rounded-full flex items-center justify-center mx-auto mb-6 text-red-600">★</div>
-                    <h4 class="text-3xl font-black uppercase italic tracking-tighter mb-2">Verified Professional</h4>
-                    <p class="text-gray-600 text-[10px] uppercase font-bold tracking-[0.4em]">Issued by GV Education</p>
+            <div class="benefit-item">
+                <div class="benefit-icon">📊</div>
+                <h3>Do Zero ao Avançado</h3>
+                <p>Não precisa ter experiência. Começamos do absoluto zero até campanhas avançadas</p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">💡</div>
+                <h3>Suporte em Tempo Real</h3>
+                <p>Tire suas dúvidas durante a aula ao vivo. Aprendizado garantido!</p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">⚡</div>
+                <h3>Interação ao Vivo</h3>
+                <p>Aula dinâmica com exercícios práticos e feedback em tempo real</p>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 style="text-align: center; margin-bottom: 30px;">🎓 O Que Você Vai Aprender</h2>
+            <div class="content-grid">
+                <div class="content-item">
+                    <h3>✅ Estrutura de Campanhas</h3>
+                    <p>Criação de contas, pixel e configurações essenciais</p>
+                </div>
+                <div class="content-item">
+                    <h3>✅ Pesquisa de Público</h3>
+                    <p>Encontre os compradores ideais para seu produto</p>
+                </div>
+                <div class="content-item">
+                    <h3>✅ Criação de Anúncios</h3>
+                    <p>Copy e criativos que convertem</p>
+                </div>
+                <div class="content-item">
+                    <h3>✅ Escala de Resultados</h3>
+                    <p>Como escalar campanhas lucrativas</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section class="py-40 px-6 text-center">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-5xl lg:text-8xl font-black mb-12 tracking-tighter uppercase italic leading-none">A HORA DA <br><span class="text-red-600 underline">ESCOLHA.</span></h2>
-            <p class="text-xl text-gray-400 mb-16">Você pode continuar tentando sozinho e perdendo dinheiro, ou investir U$ 50,00 para aprender o método que funciona de verdade.</p>
+        <div class="pricing-box fade-in">
+            <span class="badge">💥 OFERTA ESPECIAL DE LANÇAMENTO 💥</span>
             
-            <div class="flex flex-col items-center gap-8">
-                <a href="https://wa.me/5567981082158" target="_blank" class="glow-red bg-white text-black font-black py-8 px-16 rounded-3xl text-3xl uppercase tracking-tighter hover:bg-red-600 hover:text-white transition-all transform hover:scale-110 inline-block">
-                    QUERO ME INSCREVER AGORA
-                </a>
-                <p class="text-xs font-bold uppercase tracking-[0.3em] text-gray-600 italic">Início das aulas: Próximo Domingo, 10h (Brasília)</p>
+            <div class="original-price">De R$197,00</div>
+            <div class="price-tag">
+                R$50 <small>à vista</small>
+            </div>
+            
+            <div style="font-size: 1.2rem; color: #7f8c8d; margin: 10px 0;">
+                Menos de R$17 por hora de aula ao vivo!
+            </div>
+
+            <div class="guarantee">
+                <span>⭐</span> Garantia de Satisfação - 7 dias de garantia <span>⭐</span>
+            </div>
+
+            <a href="https://wa.me/5567981082158?text=GOSTARIA%20DE%20ME%20INSCREVER%20NO%20CURSO%3A" target="_blank" class="btn">
+                QUERO GARANTIR MINHA VAGA
+            </a>
+
+            <div class="btn-warning">
+                ⏰ Apenas 30 vagas disponíveis - Aula exclusiva ao vivo!
+            </div>
+
+            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <span>🔒 Pagamento 100% Seguro</span>
+                <span>📱 Link enviado por WhatsApp</span>
+                <span>🎥 Aula 100% ao vivo</span>
             </div>
         </div>
-    </section>
 
-    <footer class="py-12 border-t border-white/5 text-center text-gray-700 text-[10px] font-bold uppercase tracking-[0.5em]">
-        GV Courses &copy; 2026 // A Ciência do Tráfego Profissional
-    </footer>
+        <div class="faq-section">
+            <h2 style="text-align: center; margin-bottom: 30px;">❓ Perguntas Frequentes</h2>
+            
+            <div class="faq-item active">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>📌 Preciso ter experiência com tráfego pago?</span>
+                    <span style="font-size: 1.5rem;">−</span>
+                </div>
+                <div class="faq-answer">
+                    Não! O curso foi desenvolvido para iniciantes. Vamos começar do absoluto zero e você vai sair criando suas primeiras campanhas.
+                </div>
+            </div>
 
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>📌 Como vou receber o link da aula?</span>
+                    <span style="font-size: 1.5rem;">+</span>
+                </div>
+                <div class="faq-answer">
+                    Após a confirmação do pagamento, você receberá o link de acesso diretamente no seu WhatsApp. Fique atento às mensagens!
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>📌 A aula será gravada?</span>
+                    <span style="font-size: 1.5rem;">+</span>
+                </div>
+                <div class="faq-answer">
+                    <strong>NÃO!</strong> Esta é uma aula EXCLUSIVAMENTE AO VIVO. Não haverá gravação disponível. Por isso é importante garantir sua vaga e participar no horário agendado.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>📌 Quando será a aula?</span>
+                    <span style="font-size: 1.5rem;">+</span>
+                </div>
+                <div class="faq-answer">
+                    Assim que as 30 vagas forem preenchidas, definiremos a data e horário da aula. Você será informado com antecedência pelo WhatsApp.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>📌 O pagamento é seguro?</span>
+                    <span style="font-size: 1.5rem;">+</span>
+                </div>
+                <div class="faq-answer">
+                    Sim! Utilizamos as principais plataformas de pagamento do mercado com toda segurança e criptografia.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>📌 Posso pagar por PIX ou cartão?</span>
+                    <span style="font-size: 1.5rem;">+</span>
+                </div>
+                <div class="faq-answer">
+                    Sim! Ao clicar no botão do WhatsApp, você poderá escolher a forma de pagamento: PIX, cartão de crédito ou boleto.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>📌 E se eu perder a aula ao vivo?</span>
+                    <span style="font-size: 1.5rem;">+</span>
+                </div>
+                <div class="faq-answer">
+                    Como a aula é exclusivamente ao vivo e não será gravada, é importante que você reserve esse horário. Em caso de imprevisto, entre em contato pelo WhatsApp para verificarmos a possibilidade de participar da próxima turma.
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 Tráfego Pago na Prática - Todos os direitos reservados</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">
+                <a href="#">Termos de Uso</a> | 
+                <a href="#">Política de Privacidade</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Botão flutuante do WhatsApp -->
+    <a href="https://wa.me/5567981082158?text=GOSTARIA%20DE%20ME%20INSCREVER%20NO%20CURSO%3A" target="_blank" class="whatsapp-float">
+        💬
+    </a>
+
+    <script>
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+            
+            const symbol = element.querySelector('span:last-child');
+            if (faqItem.classList.contains('active')) {
+                symbol.innerHTML = '−';
+            } else {
+                symbol.innerHTML = '+';
+            }
+        }
+
+        // Animação de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                }, index * 200);
+            });
+        });
+
+        // Prevenir clique com botão direito em imagens (opcional)
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
